@@ -1,0 +1,181 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Flight Risk",
+      "poster": "4cR3hImKd78dSs652PAkSAyJ5Cx.jpg",
+      "synopsis": "A U.S. Marshal escorts a government witness to trial after he's accused of getting involved with a mob boss, only to discover that the pilot who is transporting them is also a hitman sent to assassinate the informant. After they subdue him, they're forced to fly together after discovering that there are others attempting to eliminate them.",
+      "genre": "Sci-Fi, Action",
+      "releaseYear": 2025,
+      "duration": 148,
+      "rating": 8.8
+    },
+    {
+      "id": 2,
+      "title": "Mufasa: The Lion King",
+      "poster": "lurEK87kukWNaHd0zYnsi3yzJrs.jpg",
+      "synopsis": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+      "genre": "Adventure",
+      "releaseYear": 2024,
+      "duration": 142,
+      "rating": 9.3
+    },
+    {
+      "id": 3,
+      "title": "The Dark Knight",
+      "poster": "qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+      "synopsis": "Batman faces the Joker, a criminal mastermind who seeks to create chaos in Gotham City.",
+      "genre": "Action, Crime",
+      "releaseYear": 2008,
+      "duration": 152,
+      "rating": 9.0
+    },
+    {
+      "id": 4,
+      "title": "Avatar",
+      "poster": "pxbrFOTV2j8MmZQlfin3dwz5cXV.jpg",
+      "synopsis": "A marine on an alien planet finds himself torn between following orders and protecting the world he feels is his home.",
+      "genre": "Sci-Fi, Adventure",
+      "releaseYear": 2009,
+      "duration": 162,
+      "rating": 7.9
+    },
+    {
+      "id": 5,
+      "title": "The Lord of the Rings: The Return of the King",
+      "poster": "rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+      "synopsis": "Gandalf and Aragorn lead the World of Men against Sauron's army, while Frodo and Sam continue their quest to destroy the One Ring.",
+      "genre": "Action, Adventure, Drama",
+      "releaseYear": 2003,
+      "duration": 201,
+      "rating": 8.9
+    },
+    {
+      "id": 6,
+      "title": "12 Angry Men",
+      "poster": "zhG3vKWyDRaZYoaww1UVAi29T9h.jpg",
+      "synopsis": "A jury of twelve men must decide the fate of a young man accused of murder, and the deliberation forces them to confront their own prejudices.",
+      "genre": "Drama",
+      "releaseYear": 1957,
+      "duration": 96,
+      "rating": 8.9
+    },
+    {
+      "id": 7,
+      "title": "Schindler's List",
+      "poster": "sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",
+      "synopsis": "In Poland during World War II, Oskar Schindler gradually becomes concerned for his Jewish workers after witnessing their persecution by the Nazis.",
+      "genre": "Biography, Drama, History",
+      "releaseYear": 1993,
+      "duration": 195,
+      "rating": 8.9
+    },
+    {
+      "id": 8,
+      "title": "The Good, the Bad and the Ugly",
+      "poster": "kVlPBP9kWc03J0LESTZUgd1vscW.jpg",
+      "synopsis": "In the American Civil War, a bounty hunting scam joins three men in an uneasy alliance. As they try to find a fortune in gold, they must face their changing partnership.",
+      "genre": "Western",
+      "releaseYear": 1966,
+      "duration": 161,
+      "rating": 8.8
+    },
+    {
+      "id": 9,
+      "title": "Forrest Gump",
+      "poster": "arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
+      "synopsis": "The life and loves of a man who witnesses some of the most momentous events in the 20th century.",
+      "genre": "Drama, Romance",
+      "releaseYear": 1994,
+      "duration": 142,
+      "rating": 8.8
+    }
+  ],
+  "tvShows": [
+    {
+      "id": 1,
+      "title": "Breaking Bad",
+      "poster": "ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+      "synopsis": "A high school chemistry teacher turned methamphetamine kingpin partners with a former student to secure his family's future.",
+      "genre": "Crime, Drama",
+      "releaseYear": 2008,
+      "seasons": 5,
+      "rating": 9.5
+    },
+    {
+      "id": 2,
+      "title": "Game of Thrones",
+      "poster": "u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+      "synopsis": "Noble families fight for control over the Seven Kingdoms of Westeros while an ancient enemy returns.",
+      "genre": "Fantasy, Drama",
+      "releaseYear": 2011,
+      "seasons": 8,
+      "rating": 9.3
+    },
+    {
+      "id": 3,
+      "title": "Stranger Things",
+      "poster": "x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
+      "synopsis": "A group of kids in the 1980s uncover secret government experiments and supernatural creatures in their small town.",
+      "genre": "Sci-Fi, Horror",
+      "releaseYear": 2016,
+      "seasons": 4,
+      "rating": 8.7
+    },
+    {
+      "id": 4,
+      "title": "Reacher",
+      "poster": "31GlRQMiDunO8cl3NxTz34U64rf.jpg",
+      "synopsis": "Jack Reacher, a veteran military police investigator, has just recently entered civilian life. Reacher is a drifter, carrying no phone and the barest of essentials as he travels the country and explores the nation he once served..",
+      "genre": "Action, Adventure, Drama",
+      "releaseYear": 2022,
+      "seasons": 2,
+      "rating": 8.2
+    },
+    {
+      "id": 5,
+      "title": "The Rookie",
+      "poster": "bL1mwXDnH5fCxqc4S2n40hoVyoe.jpg",
+      "synopsis": "Starting over isn't easy, especially for small-town guy John Nolan who, after a life-altering incident, is pursuing his dream of being an LAPD officer. As the force's oldest rookie, he's met with skepticism from some higher-ups who see him as just a walking midlife crisis.",
+      "genre": "Crime, Drama",
+      "releaseYear": 2018,
+      "seasons": 7,
+      "rating": 8.2
+    },
+    {
+      "id": 6,
+      "title": "Squid Game",
+      "poster": "1QdXdRYfktUSONkl1oD5gc6Be0s.jpg",
+      "synopsis": "Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits — with deadly high stakes.",
+      "genre": "Action, Adventure, Drama",
+      "releaseYear": 2021,
+      "seasons": 2,
+      "rating": 8.2
+    }
+  ],
+  "actors": [
+    { "id": 1, "image": "whNwkEQYWLFJA8ij0WyOOAD5xhQ.jpg" },
+    { "id": 2, "image": "lh1r1bmkEBcI3VR0AeFKGEt7JOr.jpg" },
+    { "id": 3, "image": "ts9l18VkDSooRGDWIeQegNVHciC.jpg" },
+    { "id": 4, "image": "wdmLUSPEC7dXuqnjTM4NgbjvTKk.jpg" },
+    { "id": 5, "image": "4SYTH5FdB0dAORV98Nwg3llgVnY.jpg" }
+  ],
+
+  "featuredMovies": [
+    { "id": 1, "poster": "sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg" },
+    { "id": 2, "poster": "4cR3hImKd78dSs652PAkSAyJ5Cx.jpg" },
+    { "id": 3, "poster": "lurEK87kukWNaHd0zYnsi3yzJrs.jpg" },
+    { "id": 4, "poster": "kVlPBP9kWc03J0LESTZUgd1vscW.jpg" },
+    { "id": 5, "poster": "rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg" },
+    { "id": 6, "poster": "arw2vcBveWOVZr6pxd9XTd1TdQa.jpg" }
+  ],
+
+  "featuredTvShows": [
+    { "id": 1, "poster": "1QdXdRYfktUSONkl1oD5gc6Be0s.jpg" },
+    { "id": 2, "poster": "ggFHVNu6YYI5L9pCfOacjizRGt.jpg" },
+    { "id": 3, "poster": "u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg" },
+    { "id": 4, "poster": "x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg" },
+    { "id": 5, "poster": "31GlRQMiDunO8cl3NxTz34U64rf.jpg" },
+    { "id": 6, "poster": "bL1mwXDnH5fCxqc4S2n40hoVyoe.jpg" }
+  ]
+}
