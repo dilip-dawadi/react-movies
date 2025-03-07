@@ -11,7 +11,7 @@ const Nav = () => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   return (
-    <nav className="bg-dark-100 text-white shadow-lg">
+    <nav className="bg-dark-100 relative text-white shadow-lg">
       <div className="container mx-auto px-2 h-16 flex justify-between items-center">
         <Link
           to="/"
@@ -72,7 +72,7 @@ const Nav = () => {
         </button>
       </div>
       {isOpen && (
-        <nav className="md:hidden flex flex-col items-center bg-dark-100 py-4 space-y-4">
+        <div className="md:hidden flex flex-col items-center fixed top-16 w-full z-50 bg-dark-100 py-4 space-y-4">
           <Link
             to="/movies"
             className="hover:text-white"
@@ -95,12 +95,12 @@ const Nav = () => {
             className="bg-white px-4 py-2 rounded-lg hover:bg-white text-dark-100"
             label={"Sign In"}
           />
-        </nav>
+        </div>
       )}
       <Modal
         isModalOpen={isModalOpen}
         onModalClose={() => setIsModalOpen(false)}
-        className="text-dark-100"
+        className="text-dark-100 mx-1.5"
       >
         <Authenticate isSignUp={isSignUp} setIsSignUp={setIsSignUp} />
       </Modal>
