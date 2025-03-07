@@ -81,7 +81,7 @@ const Nav = () => {
             Movies
           </Link>
           <Link
-            to="/tv"
+            to="/tvShows"
             className="hover:text-white"
             onClick={() => setIsOpen(false)}
           >
