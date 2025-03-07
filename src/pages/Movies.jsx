@@ -17,21 +17,23 @@ const Movies = () => {
 
       <div className="wrapper">
         <section className="all-shows">
-          <div className="flex items-center justify-between">
+          <div className="flex max-md:flex-col max-md:items-start items-center justify-between">
             <h2 className="mt-5 flex-2">All Movies</h2>
-            <Search />
-            <Button
-              className={
-                "ml-2 bg-dark-100 drop-shadow-2xl rounded-lg mt-5 py-5 px-5"
-              }
-              onClick={() => setIsModalOpen(true)}
-              label={
-                <div className="flex gap-2">
-                  <Filter />
-                  Filter
-                </div>
-              }
-            />
+            <div className="inline-flex flex-2 items-center justify-end">
+              <Search />
+              <Button
+                className={
+                  "ml-2 bg-dark-100 drop-shadow-2xl rounded-lg mt-5 py-5 px-5"
+                }
+                onClick={() => setIsModalOpen(true)}
+                label={
+                  <div className="flex gap-2">
+                    <Filter />
+                    Filter
+                  </div>
+                }
+              />
+            </div>
             <Modal
               onModalClose={() => setIsModalOpen(false)}
               isModalOpen={isModalOpen}
