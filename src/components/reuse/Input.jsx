@@ -15,7 +15,7 @@ export const Input = ({
     <textarea
       placeholder={placeholder}
       rows={2}
-      className={` w-full p-3 border border-[#cc] ${className}`}
+      className={` w-full p-3 border border-[#ccc] ${className}`}
     />
   ) : (
     <input
