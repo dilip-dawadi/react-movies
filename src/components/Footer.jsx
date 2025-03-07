@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-dark-100 text-white py-6">
       <div className="container mx-auto px-4">
         {/* Footer Menu Items */}
-        <div className="flex justify-around items-end mb-6">
+        <div className="flex flex-col justify-around items-start md:flex-row md:items-end mb-6 max-md:gap-4">
           <div>
             <h4 className="font-semibold text-lg text-left mb-2">Watch</h4>
             <ul className="space-y-2 text-left">
@@ -103,7 +103,9 @@ const Footer = () => {
 
           {/* Social Media Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-2">Follow Us</h4>
+            <h4 className="font-semibold text-lg max-sm:text-left mb-2">
+              Follow Us
+            </h4>
             <div className="flex space-x-4">
               <a
                 href="https://www.facebook.com"
