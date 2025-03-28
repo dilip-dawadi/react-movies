@@ -8,6 +8,7 @@ import simpleapi.demo.models.Movie;
 import simpleapi.demo.services.MovieService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -62,6 +63,17 @@ public class MovieController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovie(@PathVariable String id) {
         return movieService.deleteMovie(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+        @GetMapping("/actors")
+    public ResponseEntity<?> getAllActors() {
+        List<Map<String, Object>> actors = List.of(
+            Map.of("id", 1, "image", "whNwkEQYWLFJA8ij0WyOOAD5xhQ.jpg"),
+            Map.of("id", 2, "image", "lh1r1bmkEBcI3VR0AeFKGEt7JOr.jpg"),
+            Map.of("id", 3, "image", "ts9l18VkDSooRGDWIeQegNVHciC.jpg"),
+            Map.of("id", 4, "image", "wdmLUSPEC7dXuqnjTM4NgbjvTKk.jpg"),
+            Map.of("id", 5, "image", "4SYTH5FdB0dAORV98Nwg3llgVnY.jpg")
+        );
+        return ResponseEntity.ok(actors);
     }
 }
 

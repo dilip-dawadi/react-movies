@@ -64,8 +64,10 @@ const MyProfile = () => {
         <hr style={{ margin: "20px auto", background: "#999", width: "70%" }} />
 
         <h3 style={{ margin: "10px auto" }}>My Address</h3>
-        <p style={{ margin: "5px auto" }}>123, Main Street, New York, USA</p>
-        <p style={{ margin: "5px auto" }}>Phone: +1 234 567 890</p>
+        <p style={{ margin: "5px auto" }}>
+          {user?.street} {", "} {user?.city} {", "} {user?.country}
+        </p>
+        <p style={{ margin: "5px auto" }}>Phone: +1 {user?.number}</p>
 
         <Button
           className={

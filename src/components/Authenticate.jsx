@@ -6,9 +6,17 @@ import api from "../API";
 import { useEntertainmentContext } from "../contextApi/Context";
 
 const Authenticate = ({ isSignUp, setIsSignUp }) => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    number: "",
+    street: "",
+    city: "",
+    country: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user, setUser, setIsAuthModelOpen } = useEntertainmentContext();
+  const { setUser, setIsAuthModelOpen } = useEntertainmentContext();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,14 +30,14 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
     );
   };
   const [termsChecked, setTermsChecked] = useState(false);
-  const handleFormSubmit = useCallback(
+  const handleLoginFormSubmit = useCallback(
     async (e) => {
       e.preventDefault();
       if (!formData.email || !formData.password) {
-        return toast.warn("Please fill in all fields.");
+        return alert("Please fill in all fields.");
       }
       if (!isValidPassword(formData.password)) {
-        return toast.warn(
+        return alert(
           "Password must be at least 8 characters long and include at least one special character and one number."
         );
       }
@@ -48,9 +56,35 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
           error?.response?.data?.error ||
           error.message ||
           "Login failed. Try again.";
-        console.log(errorMessage);
       } finally {
         setIsSubmitting(false);
+      }
+    },
+    [formData, navigate]
+  );
+  const handleRegisterFormSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (
+        !formData.email ||
+        !formData.password ||
+        !formData.username ||
+        !formData.email
+      ) {
+        return alert("Please fill in all fields.");
+      }
+      if (!isValidPassword(formData.password)) {
+        return alert(
+          "Password must be at least 8 characters long and include at least one special character and one number."
+        );
+      }
+      setIsSubmitting(true);
+      try {
+        await api.post("/auth/register", formData);
+      } catch (error) {
+        setIsSignUp(true);
+      } finally {
+        setIsSignUp(false);
       }
     },
     [formData, navigate]
@@ -70,9 +104,19 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
 
       {/* Form Section */}
       <form
-        onSubmit={handleFormSubmit}
+        onSubmit={isSignUp ? handleRegisterFormSubmit : handleLoginFormSubmit}
         className={`${isSignUp ? "grid grid-cols-2 gap-2" : ""}`}
       >
+        {isSignUp && (
+          <Input
+            className="col-span-2"
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            placeholder="Enter your user name"
+          />
+        )}
         <Input
           type="email"
           placeholder="Enter email"
@@ -93,10 +137,34 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
         {/* Additional fields for sign up */}
         {isSignUp && (
           <>
-            <Input type="number" placeholder="Enter phone number" />
-            <Input type="text" placeholder="Enter street" />
-            <Input type="text" placeholder="Enter city" />
-            <Input type="text" placeholder="Enter country" />
+            <Input
+              type="number"
+              name="number"
+              value={formData.number}
+              onChange={handleChange}
+              placeholder="Enter phone number"
+            />
+            <Input
+              type="text"
+              onChange={handleChange}
+              name="street"
+              value={formData.street}
+              placeholder="Enter street"
+            />
+            <Input
+              type="text"
+              onChange={handleChange}
+              name="city"
+              value={formData.city}
+              placeholder="Enter city"
+            />
+            <Input
+              type="text"
+              onChange={handleChange}
+              name="country"
+              value={formData.country}
+              placeholder="Enter country"
+            />
 
             {/* Terms and Conditions Checkbox */}
             <div className="col-span-2 flex items-center mt-2">
@@ -132,7 +200,7 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
         <Button
           className="w-full col-span-2 bg-dark-100 py-2 text-white rounded-lg hover:bg-dark-100"
           label={isSignUp ? "Sign up" : "Sign in"}
-          disabled={isSignUp && !termsChecked}
+          disabled={isSubmitting && isSignUp && !termsChecked}
           type="submit"
         />
       </form>

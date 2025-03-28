@@ -10,7 +10,7 @@ public class Movie {
     @Id
     private String id;
     private String title;
-    private Double price; // Changed to Double to allow null values
+    private Double price;
     private String synopsis;
 
     @JsonProperty("isTvShow")

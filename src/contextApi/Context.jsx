@@ -55,7 +55,7 @@ export const EntertainmentProvider = ({ children }) => {
   useEffect(() => {
     fetchData("movies", setMovies);
     fetchData("movies/tvshows", setTvShows);
-    // fetchData("actors", setActors);
+    fetchData("movies/actors", setActors);
     fetchData("movies/featured", setFeaturedMovies);
     fetchData("movies/featured/tvshows", setFeaturedTvShows);
   }, []);

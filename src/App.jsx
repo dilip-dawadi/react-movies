@@ -25,7 +25,9 @@ const App = () => {
               <Route path="/movie/:id" element={<MovieDetails />} />
               <Route path="/tvShows" element={<TvShows />} />
               <Route path="/tvShow/:id" element={<MovieDetails />} />
-              <Route element={<ProtectedRoute allowedRoles={["USER"]} />}>
+              <Route
+                element={<ProtectedRoute allowedRoles={["USER", "CUSTOMER"]} />}
+              >
                 <Route path="/myprofile" element={<MyProfile />} />
               </Route>
             </Routes>

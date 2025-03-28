@@ -3,15 +3,20 @@ package simpleapi.demo.controllers;
 import simpleapi.demo.models.User;
 import simpleapi.demo.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -32,11 +37,20 @@ public class AuthController {
     }
     
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody User user) {
-        String token = authService.registerUser(user);
-        return token.equals("User already exists") ? ResponseEntity.badRequest().body(token) : ResponseEntity.ok(Map.of("token", token));
+@PostMapping("/register")
+public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) {
+    if (result.hasErrors()) {
+        List<String> errors = result.getAllErrors()
+            .stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+            .collect(Collectors.toList());
+        return ResponseEntity.badRequest().body(Map.of("errors", errors));
     }
+
+    String token = authService.registerUser(user);
+    return token.equals("User already exists") ? ResponseEntity.badRequest().body(token) : ResponseEntity.ok(Map.of("token", token));
+}
+
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials, HttpServletResponse response) {
@@ -74,8 +88,7 @@ public class AuthController {
 
         return ResponseEntity.ok("Logout successful");
     }
-    // Helper method to extract JWT token from cookies
-    
+    // Helper method to extract JWT token from cookies 
     private String getJwtFromCookies(HttpServletRequest request) {
       Cookie[] cookies = request.getCookies();
       if (cookies == null) {
