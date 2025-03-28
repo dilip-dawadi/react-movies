@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Spinner from "../components/Spinner.jsx";
-import Card from "../components/reuse/Card.jsx";
+import MovieCard from "../components/reuse/MovieCard.jsx";
 import { useEntertainmentContext } from "../contextApi/Context.jsx";
 import { useNavigate } from "react-router-dom";
 import { HeroSection } from "../components/home/Hero.jsx";
@@ -18,12 +18,12 @@ const Home = () => {
       <div className="wrapper">
         <HeroSection />
 
-        {featuredMovies.length > 0 && (
-          <section className="featured">
-            <h2>Featured Movies</h2>
+        <section className="featured">
+          <h2>Featured Movies</h2>
 
-            <ul>
-              {featuredMovies?.slice(0, 6).map((movie, index) => (
+          <ul>
+            {featuredMovies.length > 0 ? (
+              featuredMovies?.slice(0, 6).map((movie, index) => (
                 <li key={index}>
                   <p>{index + 1}</p>
                   <img
@@ -31,10 +31,14 @@ const Home = () => {
                     alt={movie.id}
                   />
                 </li>
-              ))}
-            </ul>
-          </section>
-        )}
+              ))
+            ) : (
+              <li className="h-[40vh] w-full">
+                <Spinner />
+              </li>
+            )}
+          </ul>
+        </section>
 
         <section className="all-shows">
           <div className="flex justify-between w-full items-center">
@@ -49,7 +53,7 @@ const Home = () => {
           ) : (
             <ul>
               {movies?.slice(0, 4).map((movie) => (
-                <Card key={movie.id} data={movie} shows={"movie"} />
+                <MovieCard key={movie.id} data={movie} shows={"movie"} />
               ))}
             </ul>
           )}
@@ -85,7 +89,7 @@ const Home = () => {
           ) : (
             <ul>
               {tvShows?.slice(0, 4).map((tvShow) => (
-                <Card key={tvShow.id} data={tvShow} shows={"tvShow"} />
+                <MovieCard key={tvShow.id} data={tvShow} shows={"tvShow"} />
               ))}
             </ul>
           )}

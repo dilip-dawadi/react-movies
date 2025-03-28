@@ -9,6 +9,7 @@ export const HeroSection = () => {
   const { movies, tvShows, loading } = useEntertainmentContext();
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getRandomItems = (arr, count) => {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
@@ -36,8 +37,8 @@ export const HeroSection = () => {
   };
 
   return (
-    <header className=" w-full max-w-6xl mx-auto overflow-hidden rounded-lg shadow-lg">
-      <div className="relative group flex w-full h-64 md:h-96">
+    <header className=" w-full max-w-6xl mx-auto overflow-hidden rounded-lg shadow-lg bg-white group">
+      <div className="relative flex w-full h-64 md:h-96">
         {loading ? (
           <motion.div
             initial={{ opacity: 0 }}
@@ -59,33 +60,15 @@ export const HeroSection = () => {
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/w600_and_h900_bestv2/${slides[current]?.poster})`,
               }}
-            ></motion.div>
+            >
+              {" "}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition duration-300 ease-in-out"></div>
+            </motion.div>
           </AnimatePresence>
         )}
-        <div className="absolute group-hover:flex inset-0 bg-black/50 hidden flex-col justify-center items-center text-center px-6">
-          <h1>
-            Find <span className="text-gradient">Movies</span> You'll Enjoy
-            Without the Hassle
-          </h1>
-          <Search />
-        </div>
-
-        {/* Navigation Buttons */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-3 rounded-full text-white hover:bg-opacity-75"
-        >
-          <ChevronLeft size={24} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-3 rounded-full text-white hover:bg-opacity-75"
-        >
-          <ChevronRight size={24} />
-        </button>
 
         {/* Dots Navigation */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-50">
           {slides.map((_, index) => (
             <span
               key={index}
@@ -95,6 +78,26 @@ export const HeroSection = () => {
             />
           ))}
         </div>
+        {/* Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-3 rounded-full text-white hover:bg-opacity-75 z-50"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-3 rounded-full text-white hover:bg-opacity-75 z-50"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+      <div className="h-64 md:h-96 absolute group-hover:opacity-100 inset-0 opacity-0 transition duration-300 ease-in-out flex flex-col justify-center items-center text-center">
+        <h1>
+          Find <span className="text-gradient">Movies</span> You'll Enjoy
+          Without the Hassle
+        </h1>
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
     </header>
   );

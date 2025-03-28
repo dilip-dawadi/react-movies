@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Modal } from "./reuse/Modal";
 import { Button } from "./reuse/Button";
 import Authenticate from "./Authenticate";
+import { useEntertainmentContext } from "../contextApi/Context";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-
+  const { user, loading, isAuthModelOpen, setIsAuthModelOpen } =
+    useEntertainmentContext();
+  const navigate = useNavigate();
   return (
     <nav className="bg-dark-100 relative text-white shadow-lg">
       <div className="container mx-auto px-2 h-16 flex justify-between items-center">
@@ -61,9 +63,14 @@ const Nav = () => {
           </Link>
 
           <Button
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              if (user?.id) {
+                return navigate("/myprofile");
+              }
+              setIsAuthModelOpen(true);
+            }}
             className="w-full bg-white py-2 px-3 text-dark-100 rounded-lg hover:bg-white"
-            label={"Sign In"}
+            label={user?.id ? "Dashboard" : "Sign In"}
           />
         </div>
 
@@ -89,17 +96,20 @@ const Nav = () => {
           </Link>
           <Button
             onClick={() => {
-              setIsModalOpen(true);
+              if (user?.id) {
+                return navigate("/myprofile");
+              }
+              setIsAuthModelOpen(true);
               setIsOpen(false);
             }}
             className="bg-white px-4 py-2 rounded-lg hover:bg-white text-dark-100"
-            label={"Sign In"}
+            label={user?.id ? "Dashboard" : "Sign In"}
           />
         </div>
       )}
       <Modal
-        isModalOpen={isModalOpen}
-        onModalClose={() => setIsModalOpen(false)}
+        isModalOpen={isAuthModelOpen}
+        onModalClose={() => setIsAuthModelOpen(false)}
         className="text-dark-100 mx-1.5"
       >
         <Authenticate isSignUp={isSignUp} setIsSignUp={setIsSignUp} />

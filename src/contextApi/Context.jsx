@@ -1,8 +1,12 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import api from "../API";
+import { getAuthStatus } from "../utils/authUtils";
 
 const EntertainmentContext = createContext();
+export const useEntertainmentContext = () => useContext(EntertainmentContext);
 
 export const EntertainmentProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [movies, setMovies] = useState([]);
   const [actors, setActors] = useState([]);
   const [featuredMovies, setFeaturedMovies] = useState([]);
@@ -10,18 +14,15 @@ export const EntertainmentProvider = ({ children }) => {
   const [tvShows, setTvShows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const API_BASE_URL =
-    "https://my-json-server.typicode.com/dilip-dawadi/react-movies";
+  const [isAuthModelOpen, setIsAuthModelOpen] = useState(false);
 
   const fetchData = async (type, setState) => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/${type}`);
-      if (!response.ok) throw new Error(`Failed to fetch ${type}`);
-      const data = await response.json();
-      setState(data);
+      const response = await api.get(`/${type}`);
+      setState(response.data);
     } catch (err) {
+      console.log(err);
       setError(err.message);
     } finally {
       setTimeout(() => {
@@ -31,12 +32,44 @@ export const EntertainmentProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchData("movies", setMovies);
-    fetchData("tvShows", setTvShows);
-    fetchData("actors", setActors);
-    fetchData("featuredMovies", setFeaturedMovies);
-    fetchData("featuredTvShows", setFeaturedTvShows);
+    const isLoggedIn = getAuthStatus();
+    async function fetchUser() {
+      if (isLoggedIn && user === null) {
+        setLoading(true);
+        try {
+          const { data } = await api.get("/auth/user");
+          setUser(data);
+        } catch (error) {
+          setUser(null);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        console.log("welcome");
+        setLoading(false);
+      }
+    }
+    fetchUser();
   }, []);
+
+  useEffect(() => {
+    fetchData("movies", setMovies);
+    fetchData("movies/tvshows", setTvShows);
+    // fetchData("actors", setActors);
+    fetchData("movies/featured", setFeaturedMovies);
+    fetchData("movies/featured/tvshows", setFeaturedTvShows);
+  }, []);
+
+  const logout = async () => {
+    try {
+      console.log("logout success");
+      await api.post("/auth/logout");
+      setUser(null);
+      localStorage.setItem("isLoggedIn", "false");
+    } catch (error) {
+      console.log("errpr");
+    }
+  };
 
   return (
     <EntertainmentContext.Provider
@@ -48,11 +81,14 @@ export const EntertainmentProvider = ({ children }) => {
         actors,
         featuredMovies,
         featuredTvShows,
+        user,
+        setUser,
+        logout,
+        isAuthModelOpen,
+        setIsAuthModelOpen,
       }}
     >
       {children}
     </EntertainmentContext.Provider>
   );
 };
-
-export const useEntertainmentContext = () => useContext(EntertainmentContext);

@@ -1,5 +1,5 @@
 import { useEntertainmentContext } from "../contextApi/Context";
-import Card from "../components/reuse/Card";
+import MovieCard from "../components/reuse/MovieCard";
 import Spinner from "../components/Spinner";
 import Search from "../components/home/Search";
 import { Button } from "../components/reuse/Button";
@@ -11,6 +11,7 @@ import { useState } from "react";
 const TvShows = () => {
   const { tvShows, loading, error } = useEntertainmentContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <main>
       <div className="pattern" />
@@ -20,7 +21,11 @@ const TvShows = () => {
           <div className="flex max-md:flex-col max-md:items-start items-center justify-between">
             <h2 className="mt-5 ">All Tv Shows</h2>
             <div className="inline-flex flex-2 items-center justify-end">
-              <Search placeholder="Search through thousands of tv shows" />
+              <Search
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                placeholder="Search through thousands of tv shows"
+              />
               <Button
                 className={
                   "ml-2 bg-dark-100 drop-shadow-2xl rounded-lg mt-5 py-5 px-5"
@@ -49,7 +54,7 @@ const TvShows = () => {
           ) : (
             <ul>
               {tvShows.map((tvShow) => (
-                <Card key={tvShow.id} data={tvShow} shows={"tvShow"} />
+                <MovieCard key={tvShow.id} data={tvShow} shows={"tvShow"} />
               ))}
             </ul>
           )}
