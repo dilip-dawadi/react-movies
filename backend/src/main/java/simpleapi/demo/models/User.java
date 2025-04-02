@@ -3,6 +3,8 @@ package simpleapi.demo.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -28,10 +30,12 @@ public class User {
     private String city;
     private String country;
     private String role;
+    @JsonProperty("isCustomer")
+    private Boolean isCustomer;
 
     public User() {}
 
-    public User(String username, String email, String password, String role, Number number, String city, String street, String country) {
+    public User(String username, String email, String password, String role, Number number, String city, String street, String country, Boolean isCustomer) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -40,6 +44,7 @@ public class User {
         this.city = city;
         this.number = number;
         this.country = country;
+        this.isCustomer = isCustomer;
     }
 
     public String getId() { return id; }
