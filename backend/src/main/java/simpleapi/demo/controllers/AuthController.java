@@ -25,9 +25,10 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @GetMapping("/user")
+    @GetMapping("/fetch-user")
     public ResponseEntity<User> getUserInfo(HttpServletRequest request) {
         String token = getJwtFromCookies(request);
+        System.err.println(token);
         if (token == null) {
             return ResponseEntity.status(401).build();
         }

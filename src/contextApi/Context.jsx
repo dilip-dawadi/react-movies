@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import api from "../API";
 import { getAuthStatus } from "../utils/authUtils";
+import { toast } from "react-toastify";
 
 const EntertainmentContext = createContext();
 export const useEntertainmentContext = () => useContext(EntertainmentContext);
@@ -37,7 +38,7 @@ export const EntertainmentProvider = ({ children }) => {
       if (isLoggedIn && user === null) {
         setLoading(true);
         try {
-          const { data } = await api.get("/auth/user");
+          const { data } = await api.get("/auth/fetch-user");
           setUser(data);
         } catch (error) {
           setUser(null);
@@ -65,9 +66,11 @@ export const EntertainmentProvider = ({ children }) => {
       console.log("logout success");
       await api.post("/auth/logout");
       setUser(null);
+      toast.success("Logout Success");
       localStorage.setItem("isLoggedIn", "false");
     } catch (error) {
-      console.log("errpr");
+      toast.warn("Logout Failed");
+      console.log("error");
     }
   };
 

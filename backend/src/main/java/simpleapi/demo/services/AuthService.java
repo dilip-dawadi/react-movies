@@ -30,12 +30,10 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("USER"); // Default role
         userRepository.save(user);
-
         return jwtTokenUtil.generateToken(user.getEmail());
     }
 
     public Map<String, Object> loginUser(String email, String password) {
-        System.err.println(email + " email " + password);
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
             return Map.of("user", user.get(), "token", jwtTokenUtil.generateToken(email));

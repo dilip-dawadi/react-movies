@@ -7,7 +7,7 @@ export const Button = ({
 }) => {
   return (
     <button
-      className={className}
+      className={className + " cursor-pointer"}
       onClick={onClick}
       type={type}
       disabled={disable}

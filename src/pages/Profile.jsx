@@ -18,60 +18,63 @@ const MyProfile = () => {
           minHeight: "80vh",
           height: "auto",
           borderRadius: "10px",
-          position: "relative",
         }}
       >
-        <Card
+        <div
           style={{
-            padding: "40px",
-            marginBottom: "70px",
-            background: "#f6f6f6",
+            position: "relative",
           }}
-        ></Card>
-        <img
-          src={user?.profile_picture}
-          alt="User"
-          style={{
-            width: "100px",
-            height: "100px",
-            border: "5px solid #fff",
-            borderRadius: "50%",
-            position: "absolute",
-            top: "18%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        />
-        <p
+        >
+          <Card
+            style={{
+              padding: "40px",
+              marginBottom: "70px",
+              background: "#f6f6f6",
+            }}
+          ></Card>
+          <img
+            src={"/person-svg.svg"}
+            alt="User"
+            style={{
+              width: "100px",
+              height: "100px",
+              padding: "6px",
+              border: "5px solid #fff",
+              borderRadius: "50%",
+              position: "absolute",
+              bottom: "-30%",
+              left: "50%",
+              transform: "translate(-50%, 30%)",
+            }}
+          />
+        </div>
+        <div
           style={{
             fontSize: "18px",
-
-            margin: "10px auto",
+            margin: "10px auto 10px auto",
           }}
         >
           {user?.username}
-        </p>
+        </div>
         <p style={{ margin: "5px auto" }}>{user?.email}</p>
-
         <hr style={{ margin: "20px auto", background: "#999", width: "70%" }} />
-
-        <h3 style={{ margin: "10px auto" }}>My Orders</h3>
-        <p style={{ margin: "5px auto" }}>You have placed 5 orders</p>
-        <p style={{ margin: "5px auto" }}>
-          Last order placed on 21st July 2021
-        </p>
-
+        <Button
+          className={
+            "bg-white w-[70%] text-dark-100 drop-shadow-2xl rounded-lg py-3"
+          }
+          onClick={() => {}}
+          label={"Change Password"}
+        />
         <hr style={{ margin: "20px auto", background: "#999", width: "70%" }} />
-
         <h3 style={{ margin: "10px auto" }}>My Address</h3>
         <p style={{ margin: "5px auto" }}>
           {user?.street} {", "} {user?.city} {", "} {user?.country}
         </p>
         <p style={{ margin: "5px auto" }}>Phone: +1 {user?.number}</p>
-
+        <hr style={{ margin: "20px auto", background: "#999", width: "70%" }} />
         <Button
           className={
-            "ml-2 bg-white w-full text-dark-100 drop-shadow-2xl rounded-lg mt-5 py-3"
+            "bg-white w-[70%] text-dark-100 drop-shadow-2xl rounded-lg py-3"
           }
           onClick={logout}
           label={"Logout"}

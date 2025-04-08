@@ -4,6 +4,7 @@ import { Input } from "./reuse/Input";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../API";
 import { useEntertainmentContext } from "../contextApi/Context";
+import { toast } from "react-toastify";
 
 const Authenticate = ({ isSignUp, setIsSignUp }) => {
   const [formData, setFormData] = useState({
@@ -50,12 +51,15 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
         setUser(data.user);
         setIsAuthModelOpen(false);
         localStorage.setItem("isLoggedIn", "true");
+        toast.success("Welcome back");
         navigate("/myprofile");
       } catch (error) {
         const errorMessage =
+          error?.response?.data ||
           error?.response?.data?.error ||
           error.message ||
           "Login failed. Try again.";
+        toast.error(errorMessage);
       } finally {
         setIsSubmitting(false);
       }
@@ -81,10 +85,16 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
       setIsSubmitting(true);
       try {
         await api.post("/auth/register", formData);
-      } catch (error) {
-        setIsSignUp(true);
-      } finally {
+        toast.success("Registeration Success");
         setIsSignUp(false);
+      } catch (error) {
+        const errorMessage =
+          error?.response?.data ||
+          error?.response?.data?.error ||
+          error.message ||
+          "Login failed. Try again.";
+        toast.error(errorMessage);
+        setIsSignUp(true);
       }
     },
     [formData, navigate]

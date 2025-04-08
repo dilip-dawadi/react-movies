@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { getAuthStatus } from "../utils/authUtils";
 
 const api = axios.create({
@@ -19,21 +19,13 @@ api.interceptors.response.use(
       error.response.status === 401 &&
       !originalRequest._retry
     ) {
+      console.log(isLoggedIn, "hello");
       originalRequest._retry = true;
-      try {
-        const { data } = await api.post("/auth/refresh-token");
-        console.log(data, "hi");
-        // const accessToken = data.accessToken;
-        // api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-        // originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
-        return api(originalRequest); // Retry failed request
-      } catch (refreshError) {
-        if (isLoggedIn) {
-          localStorage.setItem("isLoggedIn", "false");
-          toast.error("Session expired. Please log in again.");
-        }
-        return Promise.reject(refreshError);
+      if (isLoggedIn) {
+        localStorage.setItem("isLoggedIn", "false");
+        toast.error("Session expired. Please log in again.");
       }
+      return Promise.reject(error);
     }
     return Promise.reject(error);
   }
