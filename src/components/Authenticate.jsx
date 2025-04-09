@@ -48,7 +48,7 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
           email: formData.email,
           password: formData.password,
         });
-        setUser(data.user);
+        setUser(data?.user);
         setIsAuthModelOpen(false);
         localStorage.setItem("isLoggedIn", "true");
         toast.success("Welcome back");
