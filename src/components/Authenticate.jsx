@@ -75,10 +75,10 @@ const Authenticate = ({ isSignUp, setIsSignUp }) => {
         !formData.username ||
         !formData.email
       ) {
-        return alert("Please fill in all fields.");
+        return toast.error("Please fill in all fields.");
       }
       if (!isValidPassword(formData.password)) {
-        return alert(
+        return toast.error(
           "Password must be at least 8 characters long and include at least one special character and one number."
         );
       }

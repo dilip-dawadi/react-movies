@@ -62,12 +62,4 @@ public class JwtUtil {
     return userDetails.isPresent() && email.equals(userDetails.get().getEmail()) && !isTokenExpired(token);
 }
 
-// Optional: Method to refresh token
-public String refreshToken(String token) {
-    final String email = extractEmail(token);
-    if (isTokenExpired(token)) {
-        return generateToken(email); // Create a new token if expired
-    }
-    return token; // Return the same token if still valid
-}
 }

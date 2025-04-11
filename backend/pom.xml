@@ -33,12 +33,6 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
-        <!-- Spring Boot Security for Authentication -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
 <!-- JJWT API -->
 <dependency>
     <groupId>io.jsonwebtoken</groupId>
@@ -86,12 +80,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <!-- OAuth2 Authorization Server (Optional) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
         </dependency>
 
         <!-- Spring Boot Starter Test for Unit Testing -->
