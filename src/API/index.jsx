@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { getAuthStatus } from "../utils/authUtils";
 
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL + "/api", // Use full API URL
   withCredentials: true, // Ensures cookies (refresh token) are sent
 });
 
